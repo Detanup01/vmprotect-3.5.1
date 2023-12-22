@@ -8,7 +8,7 @@ if exist %rc_out% (
     set rc_out=%RC_DIR%resources.cc.tmp
     set check_rc=1
 )
-%QTDIR%/msvc2015_64/bin/rcc.exe %RC_DIR%application.qrc -o %rc_out%
+C:\Qt\Qt5_12_12\5.12.12\mingw73_64\bin\rcc.exe %RC_DIR%application.qrc -o %rc_out%
 
 call :ReplaceOld %check_rc% %rc_out% %rc%
 goto :EOF

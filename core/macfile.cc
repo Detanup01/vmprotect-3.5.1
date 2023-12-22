@@ -4770,7 +4770,7 @@ size_t MacRuntimeFunctionList::WriteCompactInfo(MacArchitecture &file)
 				personality_map[cie->personality_routine()] = next;
 			}
 			uint32_t personality_index = personality_map[cie->personality_routine()];
-			encoding |= personality_index << __builtin_ctz(UNWIND_PERSONALITY_MASK);
+			encoding |= personality_index << __builtin_ctz_(UNWIND_PERSONALITY_MASK);
 		}
 		encoding_list.push_back(encoding);
 

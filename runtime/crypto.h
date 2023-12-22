@@ -117,7 +117,7 @@ inline uint16_t __builtin_bswap16(uint16_t value)
 #define __builtin_bswap16 _byteswap_ushort
 #define __builtin_bswap32 _byteswap_ulong
 #define __builtin_bswap64 _byteswap_uint64
-inline unsigned long __builtin_ctz(unsigned int x) { unsigned long r; _BitScanForward(&r, x); return r; }
+inline unsigned long __builtin_ctz_(unsigned int x) { unsigned long r; _BitScanForward(&r, x); return r; }
 
 #if defined(WIN_DRIVER) && (WDK_NTDDI_VERSION <= NTDDI_WIN7)
 #ifndef WIN64

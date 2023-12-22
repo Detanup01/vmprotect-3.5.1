@@ -8,11 +8,12 @@
 #include "console.h"
 #include "main.h"
 
+
 #ifdef VMP_GNU
 int main(int argc, const char *argv[])
 #else
 
-int wmain(int argc, wchar_t *argv[])
+int wmain(int argc, wchar_t* argv[])
 #endif
 {
 	std::vector<std::string> args;
@@ -20,7 +21,7 @@ int wmain(int argc, wchar_t *argv[])
 #ifdef VMP_GNU
 		args.push_back(argv[i]);
 #else
-		args.push_back(os::ToUTF8(argv[i]));
+		args.push_back(std::move(os::ToUTF8(argv[i])));
 #endif
 	}
 	return ConsoleApplication(args).Run();

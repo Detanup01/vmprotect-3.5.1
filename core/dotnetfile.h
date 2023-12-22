@@ -2,6 +2,10 @@
 #define DOTNETFILE_H
 
 #include "dotnet.h"
+#include <algorithm>
+#include <functional>
+#include <iostream>
+#include <vector>
 
 std::string ILName(const std::string &ret, const std::string &type, const std::string &method, const std::string &signature);
 

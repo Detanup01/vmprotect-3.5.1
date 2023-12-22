@@ -744,7 +744,7 @@ uint32_t DwarfParser::CreateCompactEncodingForX64(IArchitecture &file, uint64_t 
 		int64_t encodedOffset = rbpOffset/(-8);
 		if ( encodedOffset > 255 )
 			return UNWIND_X86_64_MODE_DWARF;
-		encoding |= (encodedOffset << __builtin_ctz(UNWIND_X86_64_RBP_FRAME_OFFSET));
+		encoding |= (encodedOffset << __builtin_ctz_(UNWIND_X86_64_RBP_FRAME_OFFSET));
 		
 		// add register saved from each stack location
 		bool encodingFailure = false;
@@ -790,7 +790,7 @@ uint32_t DwarfParser::CreateCompactEncodingForX64(IArchitecture &file, uint64_t 
 		uint64_t stackValue = prolog.cfaRegisterOffset / 8;
 		uint32_t stackAdjust = 0;
 		bool immedStackSize = true;
-		if ( stackValue > (UNWIND_X86_64_FRAMELESS_STACK_SIZE >> __builtin_ctz(UNWIND_X86_64_FRAMELESS_STACK_SIZE)) ) {
+		if ( stackValue > (UNWIND_X86_64_FRAMELESS_STACK_SIZE >> __builtin_ctz_(UNWIND_X86_64_FRAMELESS_STACK_SIZE)) ) {
 			// stack size is too big to fit as an immediate value, so encode offset of subq instruction in function
 			if	(prolog.codeOffsetAtStackDecrement == 0)
 				return UNWIND_X86_64_MODE_DWARF;
@@ -885,10 +885,10 @@ uint32_t DwarfParser::CreateCompactEncodingForX64(IArchitecture &file, uint64_t 
 				break;
 		}
 		
-		encoding |= (stackValue << __builtin_ctz(UNWIND_X86_64_FRAMELESS_STACK_SIZE));
-		encoding |= (stackAdjust << __builtin_ctz(UNWIND_X86_64_FRAMELESS_STACK_ADJUST));
-		encoding |= (saveRegisterCount << __builtin_ctz(UNWIND_X86_64_FRAMELESS_STACK_REG_COUNT));
-		encoding |= (permutationEncoding << __builtin_ctz(UNWIND_X86_64_FRAMELESS_STACK_REG_PERMUTATION));
+		encoding |= (stackValue << __builtin_ctz_(UNWIND_X86_64_FRAMELESS_STACK_SIZE));
+		encoding |= (stackAdjust << __builtin_ctz_(UNWIND_X86_64_FRAMELESS_STACK_ADJUST));
+		encoding |= (saveRegisterCount << __builtin_ctz_(UNWIND_X86_64_FRAMELESS_STACK_REG_COUNT));
+		encoding |= (permutationEncoding << __builtin_ctz_(UNWIND_X86_64_FRAMELESS_STACK_REG_PERMUTATION));
 		return encoding;
 	}
 }
@@ -1041,7 +1041,7 @@ uint32_t DwarfParser::CreateCompactEncodingForX32(IArchitecture &file, uint64_t 
 		int encodedOffset = ebpOffset/(-4);
 		if ( encodedOffset > 255 )
 			return UNWIND_X86_MODE_DWARF;
-		encoding |= (encodedOffset << __builtin_ctz(UNWIND_X86_EBP_FRAME_OFFSET));
+		encoding |= (encodedOffset << __builtin_ctz_(UNWIND_X86_EBP_FRAME_OFFSET));
 		
 		// add register saved from each stack location
 		bool encodingFailure = false;
@@ -1087,7 +1087,7 @@ uint32_t DwarfParser::CreateCompactEncodingForX32(IArchitecture &file, uint64_t 
 		uint64_t stackValue = prolog.cfaRegisterOffset / 4;
 		uint32_t stackAdjust = 0;
 		bool immedStackSize = true;
-		if ( stackValue > (UNWIND_X86_FRAMELESS_STACK_SIZE >> __builtin_ctz(UNWIND_X86_FRAMELESS_STACK_SIZE)) ) {
+		if ( stackValue > (UNWIND_X86_FRAMELESS_STACK_SIZE >> __builtin_ctz_(UNWIND_X86_FRAMELESS_STACK_SIZE)) ) {
 			// stack size is too big to fit as an immediate value, so encode offset of subq instruction in function
 			uint64_t functionContentAdjustStackIns = start + prolog.codeOffsetAtStackDecrement - 4;		
 			uint64_t pos = file.Tell();
@@ -1179,10 +1179,10 @@ uint32_t DwarfParser::CreateCompactEncodingForX32(IArchitecture &file, uint64_t 
 				break;
 		}
 		
-		encoding |= (stackValue << __builtin_ctz(UNWIND_X86_FRAMELESS_STACK_SIZE));
-		encoding |= (stackAdjust << __builtin_ctz(UNWIND_X86_FRAMELESS_STACK_ADJUST));
-		encoding |= (saveRegisterCount << __builtin_ctz(UNWIND_X86_FRAMELESS_STACK_REG_COUNT));
-		encoding |= (permutationEncoding << __builtin_ctz(UNWIND_X86_FRAMELESS_STACK_REG_PERMUTATION));
+		encoding |= (stackValue << __builtin_ctz_(UNWIND_X86_FRAMELESS_STACK_SIZE));
+		encoding |= (stackAdjust << __builtin_ctz_(UNWIND_X86_FRAMELESS_STACK_ADJUST));
+		encoding |= (saveRegisterCount << __builtin_ctz_(UNWIND_X86_FRAMELESS_STACK_REG_COUNT));
+		encoding |= (permutationEncoding << __builtin_ctz_(UNWIND_X86_FRAMELESS_STACK_REG_PERMUTATION));
 		return encoding;
 	}
 }

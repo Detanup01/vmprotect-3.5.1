@@ -12,6 +12,8 @@
 #ifndef SCINTILLAEDITBASE_H
 #define SCINTILLAEDITBASE_H
 
+#include "ScintillaQt.h"
+
 #ifdef SCI_NAMESPACE
 namespace Scintilla {
 #endif

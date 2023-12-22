@@ -12,10 +12,12 @@
 #include "CaseConvert.h"
 #include "UniConversion.h"
 #include "UnicodeFromUTF8.h"
+#include <vector>
 
 #ifdef SCI_NAMESPACE
 using namespace Scintilla;
 #endif
+#include <algorithm>
 
 namespace {
 	// Use an unnamed namespace to protect the declarations from name conflicts
